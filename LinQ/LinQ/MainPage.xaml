@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LinQ"
+             x:Class="LinQ.MainPage">
+    
+    <ContentPage.Content>
+        <StackLayout x:Name="contenido"  Orientation="Vertical" Padding="5" Spacing="10">
+
+            <Label
+            x:Name="title" FontSize="18"
+            Text="Usos del LinQ" TextColor="Black"
+            HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Label  
+                x:Name="searchNameLbl" FontSize="14" 
+                Text="Nombre de Contacto: " TextColor="Black" 
+                HorizontalOptions="Fill"
+                WidthRequest="100"/>
+
+                <Entry
+                x:Name="searchNameBox" FontSize="14" 
+                Placeholder="Escriba aquí el nombre"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"/>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal" >
+
+                <Label 
+                x:Name="ageLabel" FontSize="14" 
+                Text="Edad de Contacto: " TextColor="Black" 
+                HorizontalOptions="Fill"
+                />
+
+                <Entry
+                    x:Name="ageBox" FontSize="14" 
+                    Placeholder="Escriba aquí la edad"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Button x:Name="btnReset"
+                        HorizontalOptions="Fill" 
+                        VerticalOptions="Center" Text="Resetear Lista"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button 
+                    x:Name="whereButton" 
+                    Text="Where"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+
+                <Button 
+                    x:Name="btnFirstOrDef" Text="FirstOrDefault"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"/>
+
+                <Button 
+                    x:Name="btnSingleOrDef" Text="SingleOrDef"
+                    HorizontalOptions="End" 
+                    VerticalOptions="Center"/>
+
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button 
+                    x:Name="btnLastOrDefault" Text="LastOrDefault"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+
+                <Button 
+                    x:Name="btnOrderBy" Text="OrderBy"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"/>
+
+                <Button 
+                    x:Name="btnOrderByDescending" Text="OrderByDesc"
+                    HorizontalOptions="End" 
+                    VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button 
+                    x:Name="btnSkipWhile" Text="SkipWhile"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+
+                <Button 
+                    x:Name="btnTakeWhile" Text="TakeWhile"
+                    HorizontalOptions="End" 
+                    VerticalOptions="Center"/>
+            </StackLayout>
+
+            <ListView x:Name="idListaContacto" VerticalOptions="FillAndExpand"/>
+            
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+
+   
+
+</ContentPage>
