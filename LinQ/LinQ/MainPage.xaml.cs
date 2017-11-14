@@ -19,13 +19,13 @@ namespace LinQ
         public MainPage()
         {
             InitializeComponent();
-            readAndInsertContactsFromXML();
+            ReadAndInsertContactsFromXML();
             idListaContacto.ItemsSource = contactos;
 
 
             btnReset.Clicked += (sender, args) =>
             {
-                limpiarBusquedaContactos();
+                LimpiarBusquedaContactos();
                 searchNameBox.Text = "";
                 ageBox.Text = "";
                 idListaContacto.ItemsSource = contactos;
@@ -33,65 +33,65 @@ namespace LinQ
 
             whereButton.Clicked += (sender, args) =>
             {
-                limpiarBusquedaContactos();
-                if (!hayErrorDeInput(1))
+                LimpiarBusquedaContactos();
+                if (!HayErrorDeInput(1))
                 {
-                    wherePorNombre();
+                    WherePorNombre();
                 }
             };
 
             btnFirstOrDef.Clicked += (sender, args) =>
             {
-                limpiarBusquedaContactos();
-                if (!hayErrorDeInput(2))
+                LimpiarBusquedaContactos();
+                if (!HayErrorDeInput(2))
                 {
-                    firstOrDefaultPorEdad();
+                    FirstOrDefaultPorEdad();
                 }
             };
 
             btnSingleOrDef.Clicked += (sender, args) =>
             {
-                limpiarBusquedaContactos();
-                if (!hayErrorDeInput(3))
+                LimpiarBusquedaContactos();
+                if (!HayErrorDeInput(3))
                 {
-                    singleOrDefMethod();
+                    SingleOrDefMethod();
                 }               
             };
 
             btnLastOrDefault.Clicked += (sender, args) =>
             {
-                if (!hayErrorDeInput(2)) { 
-                    limpiarBusquedaContactos();
-                    lastOrDefaultMethod();
+                if (!HayErrorDeInput(2)) { 
+                    LimpiarBusquedaContactos();
+                    LastOrDefaultMethod();
                 }
             };
 
             btnOrderBy.Clicked += (sender, args) =>
             {
-                limpiarBusquedaContactos();
-                orderByName();
+                LimpiarBusquedaContactos();
+                OrderByName();
 
             };
 
             btnOrderByDescending.Clicked += (sender, args) =>
             {
-                limpiarBusquedaContactos();
-                orderByNameDescending();
+                LimpiarBusquedaContactos();
+                OrderByNameDescending();
             };
 
             btnSkipWhile.Clicked += (sender, args) =>
             {
-                if (!hayErrorDeInput(2)) { 
-                    limpiarBusquedaContactos();
-                    skipWhileMayorEdad();
+                if (!HayErrorDeInput(2)) { 
+                    LimpiarBusquedaContactos();
+                    SkipWhileMayorEdad();
                 }
             };
 
             btnTakeWhile.Clicked += (sender, args) =>
             {
-                if (!hayErrorDeInput(2)) { 
-                    limpiarBusquedaContactos();
-                    takeWhileMayorEdad();
+                if (!HayErrorDeInput(2)) { 
+                    LimpiarBusquedaContactos();
+                    TakeWhileMayorEdad();
                 }
             };
         }
@@ -100,7 +100,7 @@ namespace LinQ
         /// Método encargado de limpiar el ArrayList en el que se almacenan los resultados de las
         /// búsquedas.
         /// </summary>
-        private void limpiarBusquedaContactos()
+        private void LimpiarBusquedaContactos()
         {
             if(busquedaContactos != null)
             {
@@ -118,7 +118,7 @@ namespace LinQ
         /// </summary>
         /// <param name="tipoComprobacion"></param>
         /// <returns></returns>
-        private Boolean hayErrorDeInput(int tipoComprobacion)
+        private bool HayErrorDeInput(int tipoComprobacion)
         {
             bool hayError = false;
             switch (tipoComprobacion)
@@ -152,7 +152,7 @@ namespace LinQ
         /// Método encargado de realizar la búsqueda LinQ correspondiente a FirstOrDefault, pillando el
         /// primer contacto que tenga la edad buscada o el default.
         /// </summary>
-        private void firstOrDefaultPorEdad()
+        private void FirstOrDefaultPorEdad()
         {
             var contactoResultante = contactos.FirstOrDefault(edad => edad.Edad == ageBox.Text);
             if(contactoResultante != null) {
@@ -170,7 +170,7 @@ namespace LinQ
         /// Método encargado de buscar a todos los contactos cuyo nombre coincida con el que se
         /// ha introcido en el Entry del Nombre
         /// </summary>
-        private void wherePorNombre()
+        private void WherePorNombre()
         {
             var busquedaResultante = contactos.Where(p => p.Nombre.Equals(searchNameBox.Text)).ToList();
             busquedaContactos = new ObservableCollection<Contacto>(busquedaResultante);
@@ -181,7 +181,7 @@ namespace LinQ
         /// Método encargado de realizar la búsqueda de SingleOrDefault en la Lista de Contactos,
         /// filtrando por nombre y seleccionando por edad.
         /// </summary>
-        private void singleOrDefMethod()
+        private void SingleOrDefMethod()
         {
             var contactoResultante = contactos.Where(c => c.Nombre.Contains(searchNameBox.Text)).SingleOrDefault(c => c.Edad == ageBox.Text);
             if (contactoResultante != null)
@@ -200,7 +200,7 @@ namespace LinQ
         /// Método encargado de realizar el LastOrDefault (Obtener el último contacto) que coincida
         /// con la edad introducida por el usuario.
         /// </summary>
-        private void lastOrDefaultMethod()
+        private void LastOrDefaultMethod()
         {
             var contactoResultante = contactos.LastOrDefault(c => c.Edad == ageBox.Text);
             if (contactoResultante != null)
@@ -218,7 +218,7 @@ namespace LinQ
         /// <summary>
         /// Método encargado de ordenar de manera Ascendente por nombre la lista de Contactos
         /// </summary>
-        private void orderByName()
+        private void OrderByName()
         {
             var busquedaResultante = contactos.OrderBy(c => c.Nombre).ToList();
             busquedaContactos = new ObservableCollection<Contacto>(busquedaResultante);
@@ -232,7 +232,7 @@ namespace LinQ
         /// <summary>
         /// Método encargado de ordenar de manera descendente y por nombre la lista de contactos.
         /// </summary>
-        private void orderByNameDescending()
+        private void OrderByNameDescending()
         {
             var busquedaResultante = contactos.OrderByDescending(c => c.Nombre).ToList();
             busquedaContactos = new ObservableCollection<Contacto>(busquedaResultante);
@@ -247,7 +247,7 @@ namespace LinQ
         /// Método encargado de saltarse todos aquellos contactos que sean mayores a la edad introducida
         /// hasta que esa condición ya no se cumpla.
         /// </summary>
-        private void skipWhileMayorEdad()
+        private void SkipWhileMayorEdad()
         {
             var busquedaResultante = contactos.SkipWhile(c => int.Parse(c.Edad) > int.Parse(ageBox.Text)).ToList();
             busquedaContactos = new ObservableCollection<Contacto>(busquedaResultante);
@@ -262,7 +262,7 @@ namespace LinQ
         /// Método encargado de coger todos aquellos contactos que sean mayores a la edad introducida
         /// hasta que esa condición ya no se cumpla.
         /// </summary>
-        private void takeWhileMayorEdad()
+        private void TakeWhileMayorEdad()
         {
             var busquedaResultante = contactos.TakeWhile(c => int.Parse(c.Edad) > int.Parse(ageBox.Text)).ToList();
             busquedaContactos = new ObservableCollection<Contacto>(busquedaResultante);
@@ -278,7 +278,7 @@ namespace LinQ
         /// Método encargado de realizar la lectura del XML e insertarlo en la ObservableCollection
         /// de contactos.
         /// </summary>
-        private void readAndInsertContactsFromXML()
+        private void ReadAndInsertContactsFromXML()
         {
             string ruta = "LinQ.Assets.Info.xml";
             var assembly = typeof(MainPage).GetTypeInfo().Assembly;
